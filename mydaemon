@@ -1,0 +1,19 @@
+#!/bin/bash
+if [[ $1 = "-start" ]]
+then
+exec >/dev/null
+exec 2>/dev/null
+(
+trap "" TERM
+while true
+do
+sleep 1
+done
+)&
+elif [[ $1 = "-stop" ]]
+then
+/usr/bin/killall -s 9 mydaemon
+elif [[ $1 = "-cpu" ]]
+then
+ps ax -o "user,pcpu" | awk '{a[$1]+=$2}END{for(i in a) print a[i],i}' | sort -nr
+fi
