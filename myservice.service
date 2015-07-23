@@ -1,0 +1,11 @@
+[Unit]
+Description=My Daemon
+After=syslog.target
+
+[Service]
+ExecStart=/usr/bin/mydaemon -start
+ExecStop=/usr/bin/mydaemon -stop
+Type=forking
+
+[Instal]
+WantedBy=multi-user.target
